@@ -50,7 +50,7 @@ class _CarouselSliderState extends State<CarouselSlider> {
   Widget build(BuildContext context) {
     return Center(
         child: SizedBox(
-          height: 400 ,  // Set the height of the carousel to 200
+          height: 400 ,
           child: PageView.builder(
             controller: _controller,
             itemCount: _images.length,
@@ -62,7 +62,7 @@ class _CarouselSliderState extends State<CarouselSlider> {
             itemBuilder: (context, index) {
               return Image.asset(
                 _images[index],
-                fit: BoxFit.cover,  // Adjust image to cover the entire space
+                fit: BoxFit.cover,
               );
             },
           ),

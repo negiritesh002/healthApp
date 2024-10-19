@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:healthapp/signuppage.dart';
 import 'package:healthapp/sliderscreen.dart';
 
+import 'home/homepage.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -10,6 +12,25 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  bool _isloading = false;
+
+  void _navigate(BuildContext context)async
+  {
+    setState(() {
+      _isloading = true;
+    });
+
+    await Future.delayed(Duration(seconds: 2));
+
+    setState(() {
+      _isloading = false;
+    });
+
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Register()));
+
+  }
+
   bool _passwordvisibility=false;
   FocusNode fieldone = FocusNode();
   FocusNode fieldtwo = FocusNode();
@@ -55,8 +76,18 @@ class _LoginPageState extends State<LoginPage> {
   void _submit() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      print('Email: $_email');
-      print('Password: $_password');
+      setState(() {
+        _isloading = true;
+      });
+
+      Future.delayed(Duration(seconds: 2),(){
+        setState(() {
+          _isloading = false;
+        });
+
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => homepage()));
+
+      });
     }
   }
 
@@ -121,7 +152,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       color: Colors.black,
                       onPressed: () {
-                        // Toggle the visibility
                         setState(() {
                           _passwordvisibility = !_passwordvisibility;
                         });
@@ -185,11 +215,9 @@ class _LoginPageState extends State<LoginPage> {
                   ]),
                 ),
                 const SizedBox(height: 10,),
-                TextButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return Register();
-                  },));
-                }, child: Text("Create New Account",style: TextStyle(color: Colors.blue),)),
+                Center(child: _isloading ? CircularProgressIndicator(color: Colors.black,) :
+                TextButton(onPressed: () => _navigate(context), child: Text("Create New Account",style:
+                TextStyle(color: Colors.blue),))),
               ],
             ),
           ),

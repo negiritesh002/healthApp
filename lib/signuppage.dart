@@ -89,8 +89,8 @@ class RegisterPage extends State<Register> {
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
                         image: AssetImage(
-                            'assets/images/paris.jpeg'), // Make sure the path is correct
-                        fit: BoxFit.cover, // Adjusts how the image should fit within the container
+                            'assets/images/paris.jpeg'),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -99,10 +99,10 @@ class RegisterPage extends State<Register> {
                   ),
                   // Full Name
                   Container(
-                    width: 300, // Set the width
-                    height: 50, // Set the height
+                    width: 300,
+                    height: 50,
                     margin: const EdgeInsets.only(
-                        bottom: 16), // Margin between fields
+                        bottom: 16),
                     child: TextField(
                       controller: nameController,
                       decoration: InputDecoration(
@@ -125,10 +125,10 @@ class RegisterPage extends State<Register> {
 
                   // Email Address
                   Container(
-                    width: 300, // Set the width
-                    height: 50, // Set the height
+                    width: 300,
+                    height: 50,
                     margin: const EdgeInsets.only(
-                        bottom: 16), // Margin between fields
+                        bottom: 16),
                     child: TextField(
                       controller: emailController,
                       autofocus: false,
@@ -149,16 +149,14 @@ class RegisterPage extends State<Register> {
                       ),
                     ),
                   ),
-
-                  // Password
                   Container(
-                    width: 300, // Set the width
-                    height: 50, // Set the height
+                    width: 300,
+                    height: 50,
                     margin: const EdgeInsets.only(
-                        bottom: 16), // Margin between fields
+                        bottom: 16),
                     child: TextField(
                       controller: passwordController,
-                      obscureText: !_isPasswordVisible, // For password
+                      obscureText: !_isPasswordVisible,
                       decoration: InputDecoration(
                         labelText: "Password",
                         labelStyle: TextStyle(color: Colors.black),
@@ -171,7 +169,6 @@ class RegisterPage extends State<Register> {
                           ),
                           color: Colors.black,
                           onPressed: () {
-                            // Toggle the visibility
                             setState(() {
                               _isPasswordVisible = !_isPasswordVisible;
                             });
@@ -191,12 +188,11 @@ class RegisterPage extends State<Register> {
                     ),
                   ),
 
-                  // Mobile Number
                   Container(
-                    width: 300, // Set the width
-                    height: 50, // Set the height
+                    width: 300,
+                    height: 50,
                     margin: const EdgeInsets.only(
-                        bottom: 16), // Margin between fields
+                        bottom: 16),
                     child: TextField(
                       controller: ageController,
                       decoration: InputDecoration(
@@ -219,10 +215,10 @@ class RegisterPage extends State<Register> {
 
                   // Address
                   Container(
-                    width: 300, // Set the width
-                    height: 50, // Set the height
+                    width: 300,
+                    height: 50,
                     margin: const EdgeInsets.only(
-                        bottom: 16), // Margin between fields
+                        bottom: 16),
                     child: TextField(
                       controller: addressController,
                       decoration: InputDecoration(
@@ -243,10 +239,10 @@ class RegisterPage extends State<Register> {
                     ),
                   ),
                   Container(
-                    width: 300, // Set the width
-                    height: 50, // Set the height
+                    width: 300,
+                    height: 50,
                     margin: const EdgeInsets.only(
-                        bottom: 16), // Margin between fields
+                        bottom: 16),
                     child: TextField(
                       controller: cityController,
                       decoration: InputDecoration(
