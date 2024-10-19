@@ -1,6 +1,8 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:healthapp/login.dart';
+import 'package:lottie/lottie.dart';
 
 class splash extends StatefulWidget {
   const splash({super.key});
@@ -33,9 +35,13 @@ with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.orangeAccent,
-      body: Center(child: Text("Health App")),
+    return AnimatedSplashScreen(splash:
+    Column(
+      children: [
+        Center(child: Lottie.asset("assets/Lottie/Animation - 1729322434611.json"),)
+      ],
+    )
+        , nextScreen: LoginPage(),backgroundColor: Color(0xFFD8EFF5),splashIconSize: 400,
     );
   }
 }

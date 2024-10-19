@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthapp/signuppage.dart';
 import 'package:healthapp/sliderscreen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -75,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   focusNode: fieldone,
                   onFieldSubmitted: (value){
-                    FocusScope.of(context).unfocus();
+                    FocusScope.of(context).requestFocus(fieldtwo);
                   },
                   controller: _emailController,
                   decoration: InputDecoration(
@@ -107,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   focusNode: fieldtwo,
                   onFieldSubmitted: (value){
-                    FocusScope.of(context).unfocus();
+                    FocusScope.of(context).requestFocus(fieldone);
                   },
 
                   controller: _passwordController,
@@ -185,7 +186,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 10,),
                 TextButton(onPressed: () {
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Register();
+                  },));
                 }, child: Text("Create New Account",style: TextStyle(color: Colors.blue),)),
               ],
             ),
