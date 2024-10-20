@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:healthapp/home/airesult.dart';
 
 class Symptoms extends StatefulWidget {
   const Symptoms({super.key});
@@ -78,6 +79,9 @@ class _MynewState extends State<Symptoms> {
                   child: ElevatedButton(
                     style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Color(0xFF35C5Cf))),
                     onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return airesult();
+                      },));
                     },
                     child: const Text('Submit response',style: TextStyle(color: Colors.white),),
                   ),
