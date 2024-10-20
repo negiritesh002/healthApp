@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healthapp/home/Dietplan.dart';
 import 'package:healthapp/home/Exercises.dart';
 import 'package:healthapp/home/Symptomstracker.dart';
+import 'package:healthapp/home/drawer.dart';
 import 'package:healthapp/home/mainhome.dart';
 import 'package:healthapp/home/notificationpage.dart';
 
@@ -42,10 +43,7 @@ class _homepageState extends State<homepage> {
     return Scaffold(
         drawer: Drawer(
           backgroundColor: Color(0xFFD8EFF5),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Container()
-          ),
+          child: drawer()
         ),
         appBar: AppBar(
           actions: [Padding(
@@ -129,14 +127,14 @@ class _homepageState extends State<homepage> {
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return house();
+    return House();
   }
 }
 
 class SymptomTrackerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return symptoms();
+    return Symptoms();
   }
 }
 
@@ -150,7 +148,7 @@ class DietPlanScreen extends StatelessWidget {
 class ExercisesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Exercise();
+    return Exercises();
   }
 }
 

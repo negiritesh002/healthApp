@@ -94,6 +94,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFD8EFF5),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -102,6 +103,12 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 SizedBox(height: 20,),
+                Text("HEALTHCARE",style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 2
+                ),),
+                SizedBox(height: 10,),
                 CarouselSlider(),
                 SizedBox(height: 40,),
                 TextFormField(

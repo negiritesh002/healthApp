@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:healthapp/home/homepage.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class Register extends StatefulWidget {
   const Register({super.key});
 
@@ -21,28 +23,31 @@ class RegisterPage extends State<Register> {
     String name = nameController.text;
     String email = emailController.text;
     String password = passwordController.text;
-    String confirmPassword = confirmPasswordController.text;
     String age = ageController.text;
     String address = addressController.text;
     String city = cityController.text;
+
     String emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
     RegExp emailRegex = RegExp(emailPattern);
     if (!emailRegex.hasMatch(email)) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Invalid email address")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Invalid email address")));
       return;
     }
+
     String passwordPattern =
         r'^[?=.A-Z]+[?=.a-z]+[?=.0-9]+[?=.!@#$%^&*()_+]{8,}$';
     RegExp passwordRegex = RegExp(passwordPattern);
-    if (!passwordRegex.hasMatch(password)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(
-                "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.")),
-      );
-      return;
-    }
+    // if (!passwordRegex.hasMatch(password)) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       content: Text(
+    //           "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."),
+    //     ),
+    //   );
+    //   return;
+    // }
+
     String agePattern = r'^[0-9]{1,3}$';
     RegExp ageRegex = RegExp(agePattern);
     if (!ageRegex.hasMatch(age)) {
@@ -51,16 +56,50 @@ class RegisterPage extends State<Register> {
       );
       return;
     }
-    if (name.isEmpty ||
-        email.isEmpty ||
-        password.isEmpty ||
-        confirmPassword.isEmpty ||
-        age.isEmpty ||
-        address.isEmpty ||
-        city.isEmpty) {
+
+    if (name.isEmpty || email.isEmpty || password.isEmpty  || age.isEmpty || address.isEmpty || city.isEmpty) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Please fill in all fields")));
       return;
+    }
+
+    // Now proceed with the API call if all validations are correct.
+    var url = Uri.parse('https://d-hackathon-ten.vercel.app/?vercelToolbarCode=p8pA_3Qvw0xLZJV/user/signup'); // Replace with your API endpoint
+
+    try {
+      var response = await http.post(
+        url,
+        headers: {
+          "Content-Type": "application/json", // Set headers if necessary
+        },
+        body: json.encode({
+          "name": name,
+          "email": email,
+          "password": password,
+          "age": age,
+          "address": address,
+          "city": city,
+          "gender":"m",
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // Success
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Registration successful")),
+        );
+        // Handle successful response (e.g., navigate to another screen)
+      } else {
+        // Error occurred
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Error: ${response.body}")),
+        );
+      }
+    } catch (e) {
+      // Handle network error or other exceptions
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("An error occurred: $e")),
+      );
     }
   }
 
@@ -270,8 +309,11 @@ class RegisterPage extends State<Register> {
                           child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                  __signup();
-                                  // MaterialPageRoute(builder: (context) => HomePage());
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text("Registration successful")),
+                                  );
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => homepage()));
+
                                 });
                                 print(nameController.text);
                                 print(emailController.text);

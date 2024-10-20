@@ -31,6 +31,7 @@ with SingleTickerProviderStateMixin
   void dispose() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
     overlays: SystemUiOverlay.values);
+    super.dispose();
   }
 
   @override

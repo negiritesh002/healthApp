@@ -12,9 +12,10 @@ class _CarouselSliderState extends State<CarouselSlider> {
   Timer? _timer;
 
   final List<String> _images = [
-    'assets/images/kakashi.webp',
-    'assets/images/naruto.webp',
-    'assets/images/tree.webp',
+    'assets/images/health1.jfif',
+    'assets/images/health2.jfif',
+    'assets/images/health3.webp',
+    'assets/images/health.jfif',
   ];
 
   @override
@@ -50,7 +51,7 @@ class _CarouselSliderState extends State<CarouselSlider> {
   Widget build(BuildContext context) {
     return Center(
         child: SizedBox(
-          height: 400 ,
+          height: 325 ,
           child: PageView.builder(
             controller: _controller,
             itemCount: _images.length,
